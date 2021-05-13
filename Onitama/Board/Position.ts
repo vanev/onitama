@@ -15,8 +15,8 @@ export const position =
   (rank: Rank.Rank): Position =>
     [file, rank];
 
-export const all: Array<Position> = File.all.flatMap((file) =>
-  Rank.all.map(position(file)),
+export const all: Array<Position> = Rank.all.flatMap((rank) =>
+  File.all.map((file) => position(file)(rank)),
 );
 
 export const applyMove =

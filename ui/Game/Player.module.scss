@@ -1,0 +1,18 @@
+.Player {
+  display: flex;
+
+  &._blue {
+    border: 1px solid blue;
+  }
+  &._red {
+    border: 1px solid red;
+  }
+
+  &._active {
+    background: lightgrey;
+  }
+
+  .Action {
+    width: 50%;
+  }
+}

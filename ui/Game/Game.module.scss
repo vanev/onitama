@@ -1,0 +1,18 @@
+.Game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .Player {
+    width: 100%;
+  }
+
+  .Board {
+    width: 50%;
+  }
+
+  .Sideboard {
+    width: 30%;
+  }
+}

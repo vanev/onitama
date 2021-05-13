@@ -6,6 +6,8 @@ import * as N from "fp-ts/lib/number";
 
 export type Delta = -2 | -1 | 0 | 1 | 2;
 
+export const all: Array<Delta> = [-2, -1, 0, 1, 2];
+
 export const fromNumber = (n: number): Delta => {
   if (n < -2) return -2;
   if (n > 2) return 2;

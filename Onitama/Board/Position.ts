@@ -2,6 +2,7 @@ import * as Ei from "fp-ts/lib/Either";
 import * as E from "fp-ts/lib/Eq";
 import * as S from "fp-ts/lib/string";
 import * as N from "fp-ts/lib/number";
+import * as Sh from "fp-ts/lib/Show";
 import * as Action from "../Action";
 import * as File from "./File";
 import * as Rank from "./Rank";
@@ -34,5 +35,7 @@ export const applyMove =
   };
 
 export const Eq: E.Eq<Position> = E.tuple(S.Eq, N.Eq);
+
+export const Show: Sh.Show<Position> = Sh.tuple(S.Show, N.Show);
 
 export default Position;

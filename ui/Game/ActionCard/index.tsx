@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import * as O from "../../../Onitama";
 import Moves from "./Moves";
-import styles from "./Action.module.scss";
+import styles from "./ActionCard.module.scss";
 
 type Props = {
   className?: string;

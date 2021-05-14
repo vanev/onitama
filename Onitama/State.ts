@@ -43,4 +43,8 @@ export const initial = ([actionA, actionB, actionC, actionD, actionE]: [
   activeColor: actionE.color,
 });
 
+export const activeColor = (state: State): Color => state.activeColor;
+
+export const sideboard = (state: State): Action => state.sideboard;
+
 export default State;

@@ -52,4 +52,7 @@ export const playerByColor =
   (state: State): Player =>
     state[color];
 
+export const activePlayer = (state: State): Player =>
+  playerByColor(activeColor(state))(state);
+
 export default State;

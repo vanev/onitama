@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import * as O from "../../Onitama";
-import Action from "./Action";
+import ActionCard from "./ActionCard";
 import styles from "./Player.module.scss";
 
 type Props = {
@@ -24,8 +24,14 @@ const PlayerActions = ({ player, isActive, className }: Props) => {
         className,
       )}
     >
-      <Action action={a} className={styles.Action} />
-      <Action action={b} className={styles.Action} />
+      <ActionCard
+        action={a}
+        className={styles.Action}
+      />
+      <ActionCard
+        action={b}
+        className={styles.Action}
+      />
     </div>
   );
 };

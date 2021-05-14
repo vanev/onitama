@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import * as O from "../../Onitama";
-import Action from "./Action";
+import ActionCard from "./ActionCard";
 import styles from "./Sideboard.module.scss";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 const Sideboard = ({ action, className }: Props) => {
   return (
     <div className={classnames(styles.Sideboard, className)}>
-      <Action action={action} />
+      <ActionCard action={action} />
     </div>
   );
 };

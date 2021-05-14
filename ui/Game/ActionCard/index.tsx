@@ -6,11 +6,12 @@ import styles from "./Action.module.scss";
 type Props = {
   className?: string;
   action: O.Action.Action;
+  onClick?: () => unknown;
 };
 
-const Action = ({ className, action }: Props) => {
+const ActionCard = ({ className, action, onClick = () => {} }: Props) => {
   return (
-    <div className={classnames(styles.Action, className)}>
+    <div className={classnames(styles.ActionCard, className)} onClick={onClick}>
       <span>{action.name}</span>
 
       <Moves moves={action.moves} />
@@ -18,4 +19,4 @@ const Action = ({ className, action }: Props) => {
   );
 };
 
-export default Action;
+export default ActionCard;

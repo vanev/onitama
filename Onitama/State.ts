@@ -47,4 +47,9 @@ export const activeColor = (state: State): Color => state.activeColor;
 
 export const sideboard = (state: State): Action => state.sideboard;
 
+export const playerByColor =
+  (color: Color) =>
+  (state: State): Player =>
+    state[color];
+
 export default State;

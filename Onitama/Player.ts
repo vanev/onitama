@@ -12,6 +12,9 @@ export type Player = {
   color: Color;
 };
 
+export const activePieces = (player: Player): Array<Piece.Active> =>
+  player.pieces.filter(Piece.isActive);
+
 export const moves = ({
   actions,
   pieces,

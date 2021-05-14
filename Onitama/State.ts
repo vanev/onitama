@@ -1,7 +1,7 @@
 import Action from "./Action";
 import Player from "./Player";
 import Color from "./Color";
-import { Piece } from ".";
+import * as Piece from "./Piece";
 
 export type State = {
   blue: Player;

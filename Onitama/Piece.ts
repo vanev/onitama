@@ -53,6 +53,8 @@ export type Piece = Active | Captured;
 export const isActive = (p: Piece): p is Active => p._tag === "Active";
 export const isCaptured = (p: Piece): p is Captured => p._tag === "Captured";
 
+export const color = (p: Piece): Color => p.color;
+
 export const moves =
   (action: Action.Action) =>
   (piece: Active): Array<Board.Position.Position> => {

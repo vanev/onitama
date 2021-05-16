@@ -65,7 +65,7 @@ export const moves =
         positions: Array<Board.Position.Position>,
         move: Action.Move.Move,
       ): Array<Board.Position.Position> => {
-        if (color === "blue") {
+        if (color === "red") {
           move = Action.Move.Group.inverse(move);
         }
 

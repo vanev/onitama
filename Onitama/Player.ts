@@ -36,6 +36,15 @@ export const findPieceByPosition = (
 ): ((player: Player) => O.Option<Piece.Active>) =>
   flow(activePieces, A.findFirst(Piece.isAtPosition(position)));
 
+export const hasAction = (
+  action: Action.Action,
+): ((player: Player) => boolean) =>
+  flow(
+    actions,
+    A.findFirst((playerAction) => Action.Eq.equals(playerAction, action)),
+    O.isSome,
+  );
+
 export const moves = ({
   actions,
   pieces,

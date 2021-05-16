@@ -9,8 +9,8 @@ type Props = {
 };
 
 const Moves = ({ moves }: Props) => {
-  const rankDeltas = [...O.Action.Delta.all];
-  const fileDeltas = A.reverse(O.Action.Delta.all);
+  const rankDeltas = A.reverse(O.Action.Delta.all);
+  const fileDeltas = O.Action.Delta.all;
 
   return (
     <div className={styles.Moves}>

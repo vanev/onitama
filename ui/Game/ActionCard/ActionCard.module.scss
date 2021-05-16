@@ -1,2 +1,5 @@
 .ActionCard {
+  &._selected {
+    border: 2px solid purple;
+  }
 }

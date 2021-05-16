@@ -30,4 +30,12 @@
       content: "M";
     }
   }
+
+  &._selected {
+    border: 2px solid purple;
+  }
+
+  &._target {
+    background: violet;
+  }
 }

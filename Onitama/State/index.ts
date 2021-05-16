@@ -1,21 +1,22 @@
-import Action from "./Action";
-import Player from "./Player";
-import Color from "./Color";
-import * as Piece from "./Piece";
+import * as Action from "../Action";
+import * as Player from "../Player";
+import * as Color from "../Color";
+import * as Piece from "../Piece";
+import performMove from "./performMove";
 
 export type State = {
-  blue: Player;
-  red: Player;
-  sideboard: Action;
-  activeColor: Color;
+  blue: Player.Player;
+  red: Player.Player;
+  sideboard: Action.Action;
+  activeColor: Color.Color;
 };
 
 export const initial = ([actionA, actionB, actionC, actionD, actionE]: [
-  Action,
-  Action,
-  Action,
-  Action,
-  Action,
+  Action.Action,
+  Action.Action,
+  Action.Action,
+  Action.Action,
+  Action.Action,
 ]): State => ({
   blue: {
     pieces: [
@@ -43,16 +44,18 @@ export const initial = ([actionA, actionB, actionC, actionD, actionE]: [
   activeColor: actionE.color,
 });
 
-export const activeColor = (state: State): Color => state.activeColor;
+export const activeColor = (state: State): Color.Color => state.activeColor;
 
-export const sideboard = (state: State): Action => state.sideboard;
+export const sideboard = (state: State): Action.Action => state.sideboard;
 
-export const playerByColor =
-  (color: Color) =>
-  (state: State): Player =>
+export const getPlayerByColor =
+  (color: Color.Color) =>
+  (state: State): Player.Player =>
     state[color];
 
-export const activePlayer = (state: State): Player =>
-  playerByColor(activeColor(state))(state);
+export const activePlayer = (state: State): Player.Player =>
+  getPlayerByColor(activeColor(state))(state);
+
+export { performMove };
 
 export default State;

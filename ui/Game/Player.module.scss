@@ -6,6 +6,10 @@
   }
   &._red {
     border: 1px solid red;
+
+    .Action {
+      transform: rotate(180deg);
+    }
   }
 
   &._active {

@@ -1,4 +1,6 @@
 import * as A from "fp-ts/lib/Array";
+import { flow } from "fp-ts/lib/function";
+import * as O from "fp-ts/lib/Option";
 import * as Board from "./Board";
 import * as Action from "./Action";
 import Color from "./Color";
@@ -28,6 +30,11 @@ export const activePieces = (player: Player): Array<Piece.Active> =>
 
 export const capturedPieces = (player: Player): Array<Piece.Captured> =>
   player.pieces.filter(Piece.isCaptured);
+
+export const findPieceByPosition = (
+  position: Board.Position.Position,
+): ((player: Player) => O.Option<Piece.Active>) =>
+  flow(activePieces, A.findFirst(Piece.isAtPosition(position)));
 
 export const moves = ({
   actions,

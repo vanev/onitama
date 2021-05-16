@@ -29,6 +29,11 @@ const activeEq = E.struct<Active>({
   color: S.Eq,
 });
 
+export const isAtPosition =
+  (position: Board.Position.Position) =>
+  (piece: Active): boolean =>
+    Board.Position.Eq.equals(position, piece.position);
+
 export type Captured = {
   _tag: "Captured";
   color: Color;

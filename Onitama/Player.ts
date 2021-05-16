@@ -26,6 +26,9 @@ export const pieces = (player: Player): Pieces => player.pieces;
 export const activePieces = (player: Player): Array<Piece.Active> =>
   player.pieces.filter(Piece.isActive);
 
+export const capturedPieces = (player: Player): Array<Piece.Captured> =>
+  player.pieces.filter(Piece.isCaptured);
+
 export const moves = ({
   actions,
   pieces,

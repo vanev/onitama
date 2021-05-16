@@ -1,3 +1,6 @@
+import * as E from "fp-ts/lib/Eq";
+import * as B from "fp-ts/lib/boolean";
+import * as S from "fp-ts/lib/string";
 import * as Board from "./Board";
 import * as Action from "./Action";
 import Color from "./Color";
@@ -19,6 +22,13 @@ export const active = (
   isKing,
 });
 
+const activeEq = E.struct<Active>({
+  _tag: S.Eq,
+  position: Board.Position.Eq,
+  isKing: B.Eq,
+  color: S.Eq,
+});
+
 export type Captured = {
   _tag: "Captured";
   color: Color;
@@ -26,6 +36,11 @@ export type Captured = {
 export const captured = (color: Color): Captured => ({
   _tag: "Captured",
   color,
+});
+
+const capturedEq = E.struct<Captured>({
+  _tag: S.Eq,
+  color: S.Eq,
 });
 
 export type Piece = Active | Captured;
@@ -56,5 +71,17 @@ export const moves =
       [],
     );
   };
+
+export const Eq: E.Eq<Piece> = {
+  equals: (a, b) => {
+    if (a._tag === "Active" && b._tag === "Active")
+      return activeEq.equals(a, b);
+
+    if (a._tag === "Captured" && b._tag === "Captured")
+      return capturedEq.equals(a, b);
+
+    return false;
+  },
+};
 
 export default Piece;

@@ -4,13 +4,24 @@ import * as Action from "./Action";
 import Color from "./Color";
 import * as Piece from "./Piece";
 
-type Pieces = [Piece.Piece, Piece.Piece, Piece.Piece, Piece.Piece, Piece.Piece];
+export type Pieces = [
+  Piece.Piece,
+  Piece.Piece,
+  Piece.Piece,
+  Piece.Piece,
+  Piece.Piece,
+];
+export type Actions = [Action.Action, Action.Action];
 
 export type Player = {
   pieces: Pieces;
-  actions: [Action.Action, Action.Action];
+  actions: Actions;
   color: Color;
 };
+
+export const actions = (player: Player): Actions => player.actions;
+
+export const pieces = (player: Player): Pieces => player.pieces;
 
 export const activePieces = (player: Player): Array<Piece.Active> =>
   player.pieces.filter(Piece.isActive);

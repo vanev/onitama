@@ -3,6 +3,7 @@ import * as S from "fp-ts/lib/Semigroup";
 import * as M from "fp-ts/lib/Monoid";
 import * as Sh from "fp-ts/lib/Show";
 import * as N from "fp-ts/lib/number";
+import * as E from "fp-ts/lib/Eq";
 
 export type Delta = -2 | -1 | 0 | 1 | 2;
 
@@ -43,5 +44,7 @@ export const Group: G.Group<Delta> = {
 };
 
 export const Show: Sh.Show<Delta> = N.Show;
+
+export const Eq: E.Eq<Delta> = N.Eq;
 
 export default Delta;

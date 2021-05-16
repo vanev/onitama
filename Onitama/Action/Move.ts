@@ -2,6 +2,7 @@ import * as G from "fp-ts/lib/Group";
 import * as S from "fp-ts/lib/Semigroup";
 import * as M from "fp-ts/lib/Monoid";
 import * as Sh from "fp-ts/lib/Show";
+import * as E from "fp-ts/lib/Eq";
 import * as Delta from "./Delta";
 
 export type Move = readonly [Delta.Delta, Delta.Delta];
@@ -17,6 +18,8 @@ export const Group: G.Group<Move> = {
   ...Monoid,
   inverse: ([f, r]) => [Delta.Group.inverse(f), Delta.Group.inverse(r)],
 };
+
+export const Eq: E.Eq<Move> = E.tuple(Delta.Eq, Delta.Eq);
 
 export const Show: Sh.Show<Move> = Sh.tuple(Delta.Show, Delta.Show);
 

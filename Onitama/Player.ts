@@ -21,6 +21,30 @@ export type Player = {
   color: Color;
 };
 
+export const initialBlue = ([actionA, actionB]: Actions): Player => ({
+  pieces: [
+    Piece.active("blue", ["a", 1], false),
+    Piece.active("blue", ["b", 1], false),
+    Piece.active("blue", ["c", 1], true),
+    Piece.active("blue", ["d", 1], false),
+    Piece.active("blue", ["e", 1], false),
+  ],
+  actions: [actionA, actionB],
+  color: "blue",
+});
+
+export const initialRed = ([actionA, actionB]: Actions): Player => ({
+  pieces: [
+    Piece.active("red", ["a", 5], false),
+    Piece.active("red", ["b", 5], false),
+    Piece.active("red", ["c", 5], true),
+    Piece.active("red", ["d", 5], false),
+    Piece.active("red", ["e", 5], false),
+  ],
+  actions: [actionA, actionB],
+  color: "red",
+});
+
 export const actions = (player: Player): Actions => player.actions;
 
 export const pieces = (player: Player): Pieces => player.pieces;

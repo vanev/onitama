@@ -3,7 +3,7 @@ import { flow } from "fp-ts/lib/function";
 import * as O from "fp-ts/lib/Option";
 import * as Board from "./Board";
 import * as Action from "./Action";
-import Color from "./Color";
+import { Color } from "./Color";
 import * as Piece from "./Piece";
 
 export type Pieces = [

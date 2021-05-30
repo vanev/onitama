@@ -3,7 +3,7 @@ import * as B from "fp-ts/lib/boolean";
 import * as S from "fp-ts/lib/string";
 import * as Board from "./Board";
 import * as Action from "./Action";
-import Color from "./Color";
+import { Color } from "./Color";
 
 export type Active = {
   _tag: "Active";

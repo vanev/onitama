@@ -156,7 +156,7 @@ const performMove = (
       )(activePlayer);
 
       const inactiveColor = Color.inverse(activeColor);
-      const inactivePlayer = State.getPlayerByColor(inactiveColor)(state);
+      const inactivePlayer = State.playerByColor(inactiveColor)(state);
       const updatedInactivePlayer =
         updateInactivePlayer(target)(inactivePlayer);
 

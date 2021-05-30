@@ -1,7 +1,6 @@
 import * as Action from "../Action";
 import * as Player from "../Player";
 import * as Color from "../Color";
-import * as Piece from "../Piece";
 import performMove from "./performMove";
 
 export type State = {

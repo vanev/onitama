@@ -9,7 +9,7 @@ import styles from "./Board.module.scss";
 type Props = {
   state: O.State.State;
   className?: string;
-  selectedPiece: Op.Option<O.Piece.Active>;
+  selectedPiece: Op.Option<O.Piece.Active.Active>;
   selectedTarget: Op.Option<O.Board.Position.Position>;
   onCellClick?: (position: O.Board.Position.Position) => unknown;
 };
@@ -34,7 +34,7 @@ const Board = ({
           const piece = pipe(
             pieces,
             A.filter(O.Piece.isActive),
-            A.findFirst(O.Piece.isAtPosition(position)),
+            A.findFirst(O.Piece.Active.isAtPosition(position)),
           );
 
           const isPieceSelected = pipe(

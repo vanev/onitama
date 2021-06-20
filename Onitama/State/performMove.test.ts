@@ -9,18 +9,18 @@ import performMove from "./performMove";
 describe("Onitama.State.performMove", () => {
   describe("when the piece does not belong to the active player", () => {
     it("returns an Either.Left containing a PieceOwnershipError", () => {
-      const piece = Piece.active("red", ["a", 5], false);
+      const piece = Piece.Active.active("red", ["a", 5], false);
       const action = Action.action("test a", [[1, -1]], "blue");
       const target = Board.Position.position("b")(4);
 
       const state: State = {
         blue: {
           pieces: [
-            Piece.active("blue", ["a", 1], false),
-            Piece.active("blue", ["b", 1], false),
-            Piece.active("blue", ["c", 1], true),
-            Piece.active("blue", ["d", 1], false),
-            Piece.active("blue", ["e", 1], false),
+            Piece.Active.active("blue", ["a", 1], false),
+            Piece.Active.active("blue", ["b", 1], false),
+            Piece.Active.active("blue", ["c", 1], true),
+            Piece.Active.active("blue", ["d", 1], false),
+            Piece.Active.active("blue", ["e", 1], false),
           ],
           actions: [
             Action.action("test a", [[1, -1]], "blue"),
@@ -30,11 +30,11 @@ describe("Onitama.State.performMove", () => {
         },
         red: {
           pieces: [
-            Piece.active("red", ["a", 5], false),
-            Piece.active("red", ["b", 5], false),
-            Piece.active("red", ["c", 5], true),
-            Piece.active("red", ["d", 5], false),
-            Piece.active("red", ["e", 5], false),
+            Piece.Active.active("red", ["a", 5], false),
+            Piece.Active.active("red", ["b", 5], false),
+            Piece.Active.active("red", ["c", 5], true),
+            Piece.Active.active("red", ["d", 5], false),
+            Piece.Active.active("red", ["e", 5], false),
           ],
           actions: [
             Action.action("test c", [[1, 2]], "blue"),
@@ -56,18 +56,18 @@ describe("Onitama.State.performMove", () => {
   describe("when the piece belongs to the active player", () => {
     describe("when the action does not belong to the active player", () => {
       it("returns an Either.Left containing an ActionOwnershipError", () => {
-        const piece = Piece.active("blue", ["a", 1], false);
+        const piece = Piece.Active.active("blue", ["a", 1], false);
         const action = Action.action("test a", [[1, 1]], "blue");
         const target = Board.Position.position("b")(2);
 
         const state: State = {
           blue: {
             pieces: [
-              Piece.active("blue", ["a", 1], false),
-              Piece.active("blue", ["b", 1], false),
-              Piece.active("blue", ["c", 1], true),
-              Piece.active("blue", ["d", 1], false),
-              Piece.active("blue", ["e", 1], false),
+              Piece.Active.active("blue", ["a", 1], false),
+              Piece.Active.active("blue", ["b", 1], false),
+              Piece.Active.active("blue", ["c", 1], true),
+              Piece.Active.active("blue", ["d", 1], false),
+              Piece.Active.active("blue", ["e", 1], false),
             ],
             actions: [
               Action.action("test c", [[1, 2]], "blue"),
@@ -77,11 +77,11 @@ describe("Onitama.State.performMove", () => {
           },
           red: {
             pieces: [
-              Piece.active("red", ["a", 5], false),
-              Piece.active("red", ["b", 5], false),
-              Piece.active("red", ["c", 5], true),
-              Piece.active("red", ["d", 5], false),
-              Piece.active("red", ["e", 5], false),
+              Piece.Active.active("red", ["a", 5], false),
+              Piece.Active.active("red", ["b", 5], false),
+              Piece.Active.active("red", ["c", 5], true),
+              Piece.Active.active("red", ["d", 5], false),
+              Piece.Active.active("red", ["e", 5], false),
             ],
             actions: [
               Action.action("test a", [[1, 1]], "blue"),
@@ -103,18 +103,18 @@ describe("Onitama.State.performMove", () => {
     describe("when the action belongs to the active player", () => {
       describe("when the target is not one of the moves available to the piece with the action", () => {
         it("returns an Either.Left containing an ImpossibleTargetError", () => {
-          const piece = Piece.active("blue", ["a", 1], false);
+          const piece = Piece.Active.active("blue", ["a", 1], false);
           const action = Action.action("test a", [[1, 1]], "blue");
           const target = Board.Position.position("d")(4);
 
           const state: State = {
             blue: {
               pieces: [
-                Piece.active("blue", ["a", 1], false),
-                Piece.active("blue", ["b", 1], false),
-                Piece.active("blue", ["c", 1], true),
-                Piece.active("blue", ["d", 1], false),
-                Piece.active("blue", ["e", 1], false),
+                Piece.Active.active("blue", ["a", 1], false),
+                Piece.Active.active("blue", ["b", 1], false),
+                Piece.Active.active("blue", ["c", 1], true),
+                Piece.Active.active("blue", ["d", 1], false),
+                Piece.Active.active("blue", ["e", 1], false),
               ],
               actions: [
                 Action.action("test a", [[1, 1]], "blue"),
@@ -124,11 +124,11 @@ describe("Onitama.State.performMove", () => {
             },
             red: {
               pieces: [
-                Piece.active("red", ["a", 5], false),
-                Piece.active("red", ["b", 5], false),
-                Piece.active("red", ["c", 5], true),
-                Piece.active("red", ["d", 5], false),
-                Piece.active("red", ["e", 5], false),
+                Piece.Active.active("red", ["a", 5], false),
+                Piece.Active.active("red", ["b", 5], false),
+                Piece.Active.active("red", ["c", 5], true),
+                Piece.Active.active("red", ["d", 5], false),
+                Piece.Active.active("red", ["e", 5], false),
               ],
               actions: [
                 Action.action("test c", [[1, 2]], "blue"),
@@ -150,18 +150,18 @@ describe("Onitama.State.performMove", () => {
       describe("when the target is one of the moves available to the piece with the action", () => {
         describe("when there is a piece owned by the active player at the target", () => {
           it("return an Either.Left containing a TargetOccupiedError", () => {
-            const piece = Piece.active("blue", ["a", 1], false);
+            const piece = Piece.Active.active("blue", ["a", 1], false);
             const action = Action.action("test a", [[1, 1]], "blue");
             const target = Board.Position.position("b")(2);
 
             const state: State = {
               blue: {
                 pieces: [
-                  Piece.active("blue", ["a", 1], false),
-                  Piece.active("blue", ["b", 2], false),
-                  Piece.active("blue", ["c", 1], true),
-                  Piece.active("blue", ["d", 1], false),
-                  Piece.active("blue", ["e", 1], false),
+                  Piece.Active.active("blue", ["a", 1], false),
+                  Piece.Active.active("blue", ["b", 2], false),
+                  Piece.Active.active("blue", ["c", 1], true),
+                  Piece.Active.active("blue", ["d", 1], false),
+                  Piece.Active.active("blue", ["e", 1], false),
                 ],
                 actions: [
                   Action.action("test a", [[1, 1]], "blue"),
@@ -171,11 +171,11 @@ describe("Onitama.State.performMove", () => {
               },
               red: {
                 pieces: [
-                  Piece.active("red", ["a", 5], false),
-                  Piece.active("red", ["b", 5], false),
-                  Piece.active("red", ["c", 5], true),
-                  Piece.active("red", ["d", 5], false),
-                  Piece.active("red", ["e", 5], false),
+                  Piece.Active.active("red", ["a", 5], false),
+                  Piece.Active.active("red", ["b", 5], false),
+                  Piece.Active.active("red", ["c", 5], true),
+                  Piece.Active.active("red", ["d", 5], false),
+                  Piece.Active.active("red", ["e", 5], false),
                 ],
                 actions: [
                   Action.action("test c", [[1, 2]], "blue"),
@@ -196,18 +196,18 @@ describe("Onitama.State.performMove", () => {
 
         describe("when there is no piece at the target", () => {
           it("returns an Either.Right containing the game state with the piece at the target position, the sideboard action given to the active player, the used action moved to the sideboard, and the active color switched.", () => {
-            const piece = Piece.active("blue", ["a", 1], false);
+            const piece = Piece.Active.active("blue", ["a", 1], false);
             const action = Action.action("test a", [[1, 1]], "blue");
             const target = Board.Position.position("b")(2);
 
             const state: State = {
               blue: {
                 pieces: [
-                  Piece.active("blue", ["a", 1], false),
-                  Piece.active("blue", ["b", 1], false),
-                  Piece.active("blue", ["c", 1], true),
-                  Piece.active("blue", ["d", 1], false),
-                  Piece.active("blue", ["e", 1], false),
+                  Piece.Active.active("blue", ["a", 1], false),
+                  Piece.Active.active("blue", ["b", 1], false),
+                  Piece.Active.active("blue", ["c", 1], true),
+                  Piece.Active.active("blue", ["d", 1], false),
+                  Piece.Active.active("blue", ["e", 1], false),
                 ],
                 actions: [
                   Action.action("test a", [[1, 1]], "blue"),
@@ -217,11 +217,11 @@ describe("Onitama.State.performMove", () => {
               },
               red: {
                 pieces: [
-                  Piece.active("red", ["a", 5], false),
-                  Piece.active("red", ["b", 5], false),
-                  Piece.active("red", ["c", 5], true),
-                  Piece.active("red", ["d", 5], false),
-                  Piece.active("red", ["e", 5], false),
+                  Piece.Active.active("red", ["a", 5], false),
+                  Piece.Active.active("red", ["b", 5], false),
+                  Piece.Active.active("red", ["c", 5], true),
+                  Piece.Active.active("red", ["d", 5], false),
+                  Piece.Active.active("red", ["e", 5], false),
                 ],
                 actions: [
                   Action.action("test c", [[1, 2]], "blue"),
@@ -238,11 +238,11 @@ describe("Onitama.State.performMove", () => {
             const expectedState: State = {
               blue: {
                 pieces: [
-                  Piece.active("blue", ["b", 2], false),
-                  Piece.active("blue", ["b", 1], false),
-                  Piece.active("blue", ["c", 1], true),
-                  Piece.active("blue", ["d", 1], false),
-                  Piece.active("blue", ["e", 1], false),
+                  Piece.Active.active("blue", ["b", 2], false),
+                  Piece.Active.active("blue", ["b", 1], false),
+                  Piece.Active.active("blue", ["c", 1], true),
+                  Piece.Active.active("blue", ["d", 1], false),
+                  Piece.Active.active("blue", ["e", 1], false),
                 ],
                 actions: [
                   Action.action("test b", [[0, 1]], "red"),
@@ -252,11 +252,11 @@ describe("Onitama.State.performMove", () => {
               },
               red: {
                 pieces: [
-                  Piece.active("red", ["a", 5], false),
-                  Piece.active("red", ["b", 5], false),
-                  Piece.active("red", ["c", 5], true),
-                  Piece.active("red", ["d", 5], false),
-                  Piece.active("red", ["e", 5], false),
+                  Piece.Active.active("red", ["a", 5], false),
+                  Piece.Active.active("red", ["b", 5], false),
+                  Piece.Active.active("red", ["c", 5], true),
+                  Piece.Active.active("red", ["d", 5], false),
+                  Piece.Active.active("red", ["e", 5], false),
                 ],
                 actions: [
                   Action.action("test c", [[1, 2]], "blue"),
@@ -275,18 +275,18 @@ describe("Onitama.State.performMove", () => {
         describe("when there is a piece owned by the opposing player at the target", () => {
           describe("when the opposing piece is not the king", () => {
             it("returns an Either.Right containing the game state with the piece at the target position, the opposing piece in the captured state, the sideboard action given to the active player, the used action moved to the sideboard, and the active color switched.", () => {
-              const piece = Piece.active("blue", ["a", 1], false);
+              const piece = Piece.Active.active("blue", ["a", 1], false);
               const action = Action.action("test a", [[1, 1]], "blue");
               const target = Board.Position.position("b")(2);
 
               const state: State = {
                 blue: {
                   pieces: [
-                    Piece.active("blue", ["a", 1], false),
-                    Piece.active("blue", ["b", 1], false),
-                    Piece.active("blue", ["c", 1], true),
-                    Piece.active("blue", ["d", 1], false),
-                    Piece.active("blue", ["e", 1], false),
+                    Piece.Active.active("blue", ["a", 1], false),
+                    Piece.Active.active("blue", ["b", 1], false),
+                    Piece.Active.active("blue", ["c", 1], true),
+                    Piece.Active.active("blue", ["d", 1], false),
+                    Piece.Active.active("blue", ["e", 1], false),
                   ],
                   actions: [
                     Action.action("test a", [[1, 1]], "blue"),
@@ -296,11 +296,11 @@ describe("Onitama.State.performMove", () => {
                 },
                 red: {
                   pieces: [
-                    Piece.active("red", ["a", 5], false),
-                    Piece.active("red", ["b", 2], false),
-                    Piece.active("red", ["c", 5], true),
-                    Piece.active("red", ["d", 5], false),
-                    Piece.active("red", ["e", 5], false),
+                    Piece.Active.active("red", ["a", 5], false),
+                    Piece.Active.active("red", ["b", 2], false),
+                    Piece.Active.active("red", ["c", 5], true),
+                    Piece.Active.active("red", ["d", 5], false),
+                    Piece.Active.active("red", ["e", 5], false),
                   ],
                   actions: [
                     Action.action("test c", [[1, 2]], "blue"),
@@ -317,11 +317,11 @@ describe("Onitama.State.performMove", () => {
               const expectedState: State = {
                 blue: {
                   pieces: [
-                    Piece.active("blue", ["b", 2], false),
-                    Piece.active("blue", ["b", 1], false),
-                    Piece.active("blue", ["c", 1], true),
-                    Piece.active("blue", ["d", 1], false),
-                    Piece.active("blue", ["e", 1], false),
+                    Piece.Active.active("blue", ["b", 2], false),
+                    Piece.Active.active("blue", ["b", 1], false),
+                    Piece.Active.active("blue", ["c", 1], true),
+                    Piece.Active.active("blue", ["d", 1], false),
+                    Piece.Active.active("blue", ["e", 1], false),
                   ],
                   actions: [
                     Action.action("test b", [[0, 1]], "red"),
@@ -331,11 +331,11 @@ describe("Onitama.State.performMove", () => {
                 },
                 red: {
                   pieces: [
-                    Piece.active("red", ["a", 5], false),
-                    Piece.captured("red"),
-                    Piece.active("red", ["c", 5], true),
-                    Piece.active("red", ["d", 5], false),
-                    Piece.active("red", ["e", 5], false),
+                    Piece.Active.active("red", ["a", 5], false),
+                    Piece.Captured.captured("red"),
+                    Piece.Active.active("red", ["c", 5], true),
+                    Piece.Active.active("red", ["d", 5], false),
+                    Piece.Active.active("red", ["e", 5], false),
                   ],
                   actions: [
                     Action.action("test c", [[1, 2]], "blue"),

@@ -10,7 +10,7 @@ import * as Color from "../Color";
 import * as State from "./index";
 
 const pieceOwnershipValidation =
-  (piece: Piece.Active) =>
+  (piece: Piece.Active.Active) =>
   (state: State.State): E.Either<string, State.State> => {
     const activeColor = State.activeColor(state);
     const pieceColor = Piece.color(piece);
@@ -33,12 +33,12 @@ const actionOwnershipValidation =
 
 const impossibleTargetValidation =
   (
-    piece: Piece.Active,
+    piece: Piece.Active.Active,
     action: Action.Action,
     target: Board.Position.Position,
   ) =>
   (state: State.State): E.Either<string, State.State> => {
-    const moves = Piece.moves(action)(piece);
+    const moves = Piece.Active.moves(action)(piece);
     const foundMove = A.findFirst((move: Board.Position.Position) =>
       Board.Position.Eq.equals(move, target),
     )(moves);
@@ -61,7 +61,7 @@ const targetOccupiedValidation =
 
 const updateActivePlayer =
   (
-    piece: Piece.Active,
+    piece: Piece.Active.Active,
     action: Action.Action,
     target: Board.Position.Position,
     sideboard: Action.Action,
@@ -79,7 +79,7 @@ const updateActivePlayer =
       selectedPieceIndex.value,
       (p: Piece.Piece) => {
         if (p._tag === "Captured") return p;
-        return Piece.active(p.color, target, p.isKing);
+        return Piece.Active.active(p.color, target, p.isKing);
       },
     )(pieces);
 
@@ -117,7 +117,7 @@ const updateInactivePlayer =
 
     const updatedPieces = A.modifyAt<Piece.Piece>(
       capturedPieceIndex.value,
-      (p: Piece.Piece) => Piece.captured(p.color),
+      (p: Piece.Piece) => Piece.Captured.captured(p.color),
     )(pieces);
 
     if (O.isNone(updatedPieces)) return player;
@@ -132,7 +132,7 @@ const updateInactivePlayer =
   };
 
 const performMove = (
-  piece: Piece.Active,
+  piece: Piece.Active.Active,
   action: Action.Action,
   target: Board.Position.Position,
 ): ((state: State.State) => E.Either<string, State.State>) =>

@@ -6,7 +6,7 @@ import * as Action from "../Action";
 
 const getActivePlayerPieceAtPosition = (
   position: O.Board.Position.Position,
-): ((state: State.State) => Op.Option<O.Piece.Active>) =>
+): ((state: State.State) => Op.Option<O.Piece.Active.Active>) =>
   flow(
     State.game,
     O.State.activePlayer,

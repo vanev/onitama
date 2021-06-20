@@ -5,7 +5,7 @@ import styles from "./Cell.module.scss";
 
 type Props = {
   position: O.Board.Position.Position;
-  piece?: Op.Option<O.Piece.Active>;
+  piece?: Op.Option<O.Piece.Active.Active>;
   isPieceSelected?: boolean;
   isTarget?: boolean;
   onClick?: () => unknown;

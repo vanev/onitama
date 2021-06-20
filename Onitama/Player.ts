@@ -23,11 +23,11 @@ export type Player = {
 
 export const initialBlue = ([actionA, actionB]: Actions): Player => ({
   pieces: [
-    Piece.active("blue", ["a", 1], false),
-    Piece.active("blue", ["b", 1], false),
-    Piece.active("blue", ["c", 1], true),
-    Piece.active("blue", ["d", 1], false),
-    Piece.active("blue", ["e", 1], false),
+    Piece.Active.active("blue", ["a", 1], false),
+    Piece.Active.active("blue", ["b", 1], false),
+    Piece.Active.active("blue", ["c", 1], true),
+    Piece.Active.active("blue", ["d", 1], false),
+    Piece.Active.active("blue", ["e", 1], false),
   ],
   actions: [actionA, actionB],
   color: "blue",
@@ -35,11 +35,11 @@ export const initialBlue = ([actionA, actionB]: Actions): Player => ({
 
 export const initialRed = ([actionA, actionB]: Actions): Player => ({
   pieces: [
-    Piece.active("red", ["a", 5], false),
-    Piece.active("red", ["b", 5], false),
-    Piece.active("red", ["c", 5], true),
-    Piece.active("red", ["d", 5], false),
-    Piece.active("red", ["e", 5], false),
+    Piece.Active.active("red", ["a", 5], false),
+    Piece.Active.active("red", ["b", 5], false),
+    Piece.Active.active("red", ["c", 5], true),
+    Piece.Active.active("red", ["d", 5], false),
+    Piece.Active.active("red", ["e", 5], false),
   ],
   actions: [actionA, actionB],
   color: "red",
@@ -49,16 +49,17 @@ export const actions = (player: Player): Actions => player.actions;
 
 export const pieces = (player: Player): Pieces => player.pieces;
 
-export const activePieces = (player: Player): Array<Piece.Active> =>
+export const activePieces = (player: Player): Array<Piece.Active.Active> =>
   player.pieces.filter(Piece.isActive);
 
-export const capturedPieces = (player: Player): Array<Piece.Captured> =>
-  player.pieces.filter(Piece.isCaptured);
+export const capturedPieces = (
+  player: Player,
+): Array<Piece.Captured.Captured> => player.pieces.filter(Piece.isCaptured);
 
 export const findPieceByPosition = (
   position: Board.Position.Position,
-): ((player: Player) => O.Option<Piece.Active>) =>
-  flow(activePieces, A.findFirst(Piece.isAtPosition(position)));
+): ((player: Player) => O.Option<Piece.Active.Active>) =>
+  flow(activePieces, A.findFirst(Piece.Active.isAtPosition(position)));
 
 export const hasAction = (
   action: Action.Action,
@@ -76,7 +77,7 @@ export const moves = ({
   const activePieces = A.filter(Piece.isActive)(pieces);
 
   return A.chain((action: Action.Action) =>
-    A.chain(Piece.moves(action))(activePieces),
+    A.chain(Piece.Active.moves(action))(activePieces),
   )(actions);
 };
 
